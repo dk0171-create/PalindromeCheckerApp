@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
     /*
     Use Case 1: Application Entry & Welcome Message
@@ -15,8 +17,21 @@ The goal is to establish a clear startup flow.
 */
     
     public static void main(String[] args){
-        System.out.println("Welcome to Palindrome Checker Management System");
-        System.out.println("Version:1.0");
-        System.out.println("System initialized Successfully");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input text: ");
+        String input = sc.nextLine();
+
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < input.length() / 2; i++) {
+
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is it a Palindrome? : " + isPalindrome);
+
     }
 }
