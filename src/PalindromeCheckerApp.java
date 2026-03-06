@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
     /*
@@ -18,27 +20,35 @@ The goal is to establish a clear startup flow.
 */
     
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Input : ");
-        String input = sc.nextLine();
+        // Define the input string to validate
+        String input = "civic";
 
+// Create a Queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
+
+// Create a Stack to store characters in LIFO order
         Stack<Character> stack = new Stack<>();
 
-// push characters into stack
+// Insert each character into both queue and stack
         for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
 
+// Flag to track palindrome status
         boolean isPalindrome = true;
 
-// compare with popped characters
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+// Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
+            if (queue.poll() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
         }
 
+// Display result
+        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+
     }
 }
