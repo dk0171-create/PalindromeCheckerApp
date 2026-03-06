@@ -21,17 +21,17 @@ The goal is to establish a clear startup flow.
         System.out.print("Input text: ");
         String input = sc.nextLine();
 
-        boolean isPalindrome = true;
+        String reverse = "";
 
-        for (int i = 0; i < input.length() / 2; i++) {
-
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+// reverse the string
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reverse = reverse + input.charAt(i);
         }
 
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
-
+// check palindrome
+        if (input.equals(reverse))
+            System.out.println("Is it a Palindrome? : true");
+        else
+            System.out.println("Is it a Palindrome? : false");
     }
 }
