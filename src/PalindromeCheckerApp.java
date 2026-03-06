@@ -23,37 +23,25 @@ The goal is to establish a clear startup flow.
     
     public static void main(String[] args){
         // Define the input string
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-// Check palindrome using recursion
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+// Normalize the string: remove non-letters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z]", "").toLowerCase();
+
+        boolean isPalindrome = true;
+
+// Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+// Compare symmetric characters
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
 
 // Display result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
-    }
-
-    /**
-     * Recursively checks whether a string is palindrome.
-     *
-     * @param s Input string
-     * @param start Starting index
-     * @param end Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
-
-// Base case: one or no character left
-        if (start >= end) {
-            return true;
-        }
-
-// If characters at start and end do not match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-// Recursive call
-        return check(s, start + 1, end - 1);
     }
 }
