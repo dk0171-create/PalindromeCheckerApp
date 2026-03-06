@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class PalindromeCheckerApp {
     /*
@@ -20,27 +22,23 @@ The goal is to establish a clear startup flow.
 */
     
     public static void main(String[] args){
-        // Define the input string to validate
-        String input = "civic";
+        // Define the input string
+        String input = "refer";
 
-// Create a Queue to store characters in FIFO order
-        Queue<Character> queue = new LinkedList<>();
+// Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
 
-// Create a Stack to store characters in LIFO order
-        Stack<Character> stack = new Stack<>();
-
-// Insert each character into both queue and stack
+// Add each character to the deque
         for (char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
+            deque.add(c);
         }
 
-// Flag to track palindrome status
+// Flag to track palindrome result
         boolean isPalindrome = true;
 
-// Compare characters until the queue becomes empty
-        while (!queue.isEmpty()) {
-            if (queue.poll() != stack.pop()) {
+// Continue comparison while more than one element exists
+        while (deque.size() > 1) {
+            if (deque.pollFirst() != deque.pollLast()) {
                 isPalindrome = false;
                 break;
             }
@@ -49,6 +47,5 @@ The goal is to establish a clear startup flow.
 // Display result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
-
     }
 }
