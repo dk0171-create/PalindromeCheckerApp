@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
     /*
@@ -18,20 +19,26 @@ The goal is to establish a clear startup flow.
     
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input text: ");
+        System.out.print("Input : ");
         String input = sc.nextLine();
 
-        String reverse = "";
+        Stack<Character> stack = new Stack<>();
 
-// reverse the string
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reverse = reverse + input.charAt(i);
+// push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
 
-// check palindrome
-        if (input.equals(reverse))
-            System.out.println("Is it a Palindrome? : true");
-        else
-            System.out.println("Is it a Palindrome? : false");
+        boolean isPalindrome = true;
+
+// compare with popped characters
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
